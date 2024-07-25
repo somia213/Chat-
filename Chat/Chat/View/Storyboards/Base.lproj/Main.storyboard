@@ -225,6 +225,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Register"/>
+                                        <connections>
+                                            <action selector="registerBtn:" destination="c7a-ih-A3Z" eventType="touchUpInside" id="rWd-g6-1xA"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="6LN-7e-3s2"/>
@@ -263,6 +266,13 @@
                         <viewLayoutGuide key="safeArea" id="Koy-zH-bQP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="userEmail" destination="L8P-9G-dnf" id="7TC-8V-h8t"/>
+                        <outlet property="userFName" destination="Nls-mc-Li6" id="xam-yb-aWD"/>
+                        <outlet property="userImage" destination="kFw-MN-tj8" id="a3m-TJ-e2g"/>
+                        <outlet property="userLName" destination="58S-vN-Fwm" id="Je0-0h-B9C"/>
+                        <outlet property="userPassword" destination="XNO-4K-R2u" id="IZn-KI-AD8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn7-4t-Xbl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
