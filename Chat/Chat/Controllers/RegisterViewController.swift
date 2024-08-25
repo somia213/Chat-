@@ -19,6 +19,11 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
     
     @IBOutlet weak var userPassword: UITextField!
     
+    
+    @IBAction func closePageBtn(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -122,7 +127,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
         present(imagePicker, animated: true, completion: nil)
     }
 
-    // MARK: - UIImagePickerControllerDelegate Methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[.editedImage] as? UIImage {
             userImage.image = editedImage
