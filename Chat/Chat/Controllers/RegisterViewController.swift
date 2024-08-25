@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
@@ -23,6 +24,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBAction func closePageBtn(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
     
     let imagePicker = UIImagePickerController()
     
