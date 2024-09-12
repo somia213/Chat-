@@ -24,6 +24,9 @@
 		046DBF4D2C4AEA6A0041B0C4 /* ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DBF4C2C4AEA6A0041B0C4 /* ChatTests.swift */; };
 		046DBF572C4AEA6A0041B0C4 /* ChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DBF562C4AEA6A0041B0C4 /* ChatUITests.swift */; };
 		046DBF592C4AEA6A0041B0C4 /* ChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DBF582C4AEA6A0041B0C4 /* ChatUITestsLaunchTests.swift */; };
+		498AC74EE518CF15E26FD69E /* Pods_Chat_ChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604AB01D31D92B7073661E05 /* Pods_Chat_ChatUITests.framework */; };
+		97918C85CE7E8CE8222ED24B /* Pods_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC917D658ABDE28D96DD7A3E /* Pods_Chat.framework */; };
+		BA07387AF6515193AF081AD1 /* Pods_ChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B2E8DDB59A39CECE140521 /* Pods_ChatTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,9 +71,12 @@
 		046DBF582C4AEA6A0041B0C4 /* ChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		134674A0A0C2B7C3748448F9 /* Pods-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		20343B0619F4459FD9BD8E9D /* Pods-ChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatTests.release.xcconfig"; path = "Target Support Files/Pods-ChatTests/Pods-ChatTests.release.xcconfig"; sourceTree = "<group>"; };
+		30B2E8DDB59A39CECE140521 /* Pods_ChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5EF8FA400709664FB5775B /* Pods-ChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatTests/Pods-ChatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		604AB01D31D92B7073661E05 /* Pods_Chat_ChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_ChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35DBC42DA46FE58D5F45966 /* Pods-Chat-ChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat-ChatUITests.release.xcconfig"; path = "Target Support Files/Pods-Chat-ChatUITests/Pods-Chat-ChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B1A4F2AE373F38DE74774357 /* Pods-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.release.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.release.xcconfig"; sourceTree = "<group>"; };
+		FC917D658ABDE28D96DD7A3E /* Pods_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97918C85CE7E8CE8222ED24B /* Pods_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA07387AF6515193AF081AD1 /* Pods_ChatTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498AC74EE518CF15E26FD69E /* Pods_Chat_ChatUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +170,7 @@
 				046DBF552C4AEA6A0041B0C4 /* ChatUITests */,
 				046DBF302C4AEA670041B0C4 /* Products */,
 				86E7D0A9F0513EA53CCE0AD9 /* Pods */,
+				68BD23B312F60EC7A769ADFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,6 +214,16 @@
 				046DBF582C4AEA6A0041B0C4 /* ChatUITestsLaunchTests.swift */,
 			);
 			path = ChatUITests;
+			sourceTree = "<group>";
+		};
+		68BD23B312F60EC7A769ADFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC917D658ABDE28D96DD7A3E /* Pods_Chat.framework */,
+				604AB01D31D92B7073661E05 /* Pods_Chat_ChatUITests.framework */,
+				30B2E8DDB59A39CECE140521 /* Pods_ChatTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		86E7D0A9F0513EA53CCE0AD9 /* Pods */ = {

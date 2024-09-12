@@ -7,6 +7,9 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseFirestore
+
 
 class RegisterViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
@@ -41,27 +44,83 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
     }
     
     @IBAction func registerBtn(_ sender: Any) {
-        if !isValidName(userFName.text) {
+        // Validate the fields
+        guard let firstName = userFName.text, isValidName(firstName) else {
             showAlert(message: "First name must contain only letters and spaces.")
             return
         }
-        
-        if !isValidName(userLName.text) {
+
+        guard let lastName = userLName.text, isValidName(lastName) else {
             showAlert(message: "Last name must contain only letters and spaces.")
             return
         }
-        
-        if !isValidEmail(userEmail.text) {
+
+        guard let email = userEmail.text, isValidEmail(email) else {
             showAlert(message: "Email not correct.")
             return
         }
-        
-        if !isValidPassword(userPassword.text) {
+
+        guard let password = userPassword.text, isValidPassword(password) else {
             showAlert(message: "Password must contain letters, numbers, special characters, and be less than 9 characters.")
             return
         }
+
+        // Firebase registration
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error as NSError? {
+                if error.code == AuthErrorCode.emailAlreadyInUse.rawValue {
+                    self.showAlreadySignedUpAlert()
+                } else {
+                    self.showAlert(message: "Error: \(error.localizedDescription)")
+                }
+                return
+            }
+
+            // Created user, now store -> extra details
+            guard let userId = authResult?.user.uid else { return }
+
+            let userInfo: [String: Any] = [
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email
+            ]
+
+            // Storing user details in Firestore
+            let db = Firestore.firestore()
+            db.collection("users").document(userId).setData(userInfo) { error in
+                if let error = error {
+                    self.showAlert(message: "Error saving user info: \(error.localizedDescription)")
+                } else {
+                    self.showSignInAlert()
+                }
+            }
+        }
     }
-    
+
+    private func showSignInAlert() {
+        let alert = UIAlertController(title: "Success", message: "You are now signed in!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func showAlreadySignedUpAlert() {
+        let alert = UIAlertController(title: "Already Registered", message: "This email is already registered. Please login.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.navigateToLoginScreen()
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func navigateToLoginScreen() {
+        if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+            self.present(loginVC, animated: true, completion: nil)
+            self.modalPresentationStyle = .fullScreen
+        }
+    }
+
+
     private func isValidName(_ name: String?) -> Bool {
         guard let name = name else { return false }
         let nameRegex = "^[a-zA-Z ]*$"
