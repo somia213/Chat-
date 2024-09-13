@@ -6,26 +6,33 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
-    
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTF.isSecureTextEntry = true
-        
     }
-    
     
     @IBAction func loginBtn(_ sender: Any) {
         guard let email = emailTF.text, !email.isEmpty,
-                     let password = passwordTF.text, !password.isEmpty else {
-                   showAlert()
-                   return
-               }
+              let password = passwordTF.text, !password.isEmpty else {
+            showAlert(title: "OOPS!!!", message: "Email or password cannot be empty.")
+            return
+        }
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                self.showAlert(title: "Login Failed", message: "Email or password is incorrect. Please try again.")
+                print("Login error: \(error.localizedDescription)")
+            } else {
+                self.showAlert(title: "Success", message: "You have logged in successfully!")
+            }
+        }
     }
     
     @IBAction func registerBtn(_ sender: Any) {
@@ -36,9 +43,9 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func showAlert() {
-           let alert = UIAlertController(title: "OOPS!!!", message: "Email or password cannot be empty.", preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-           present(alert, animated: true, completion: nil)
-       }
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
