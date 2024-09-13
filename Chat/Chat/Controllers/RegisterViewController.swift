@@ -44,54 +44,55 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
     }
     
     @IBAction func registerBtn(_ sender: Any) {
-        // Validate the fields
         guard let firstName = userFName.text, isValidName(firstName) else {
             showAlert(message: "First name must contain only letters and spaces.")
             return
         }
-
+        
         guard let lastName = userLName.text, isValidName(lastName) else {
             showAlert(message: "Last name must contain only letters and spaces.")
             return
         }
-
+        
         guard let email = userEmail.text, isValidEmail(email) else {
             showAlert(message: "Email not correct.")
             return
         }
-
+        
         guard let password = userPassword.text, isValidPassword(password) else {
             showAlert(message: "Password must contain letters, numbers, special characters, and be less than 9 characters.")
             return
         }
-
-        // Firebase registration
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else {
+                return
+            }
+            
             if let error = error as NSError? {
                 if error.code == AuthErrorCode.emailAlreadyInUse.rawValue {
-                    self.showAlreadySignedUpAlert()
+                    strongSelf.showAlreadySignedUpAlert()
                 } else {
-                    self.showAlert(message: "Error: \(error.localizedDescription)")
+                    strongSelf.showAlert(message: "Error: \(error.localizedDescription)")
                 }
                 return
             }
-
-            // Created user, now store -> extra details
+            
             guard let userId = authResult?.user.uid else { return }
-
+            
             let userInfo: [String: Any] = [
                 "firstName": firstName,
                 "lastName": lastName,
                 "email": email
             ]
-
-            // Storing user details in Firestore
+            
             let db = Firestore.firestore()
             db.collection("users").document(userId).setData(userInfo) { error in
                 if let error = error {
-                    self.showAlert(message: "Error saving user info: \(error.localizedDescription)")
+                    strongSelf.showAlert(message: "Error saving user info: \(error.localizedDescription)")
                 } else {
-                    self.showSignInAlert()
+                    strongSelf.showSignInAlert()
+                    strongSelf.navigationController?.dismiss(animated: true, completion: nil)
                 }
             }
         }

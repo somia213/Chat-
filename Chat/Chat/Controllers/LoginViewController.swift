@@ -25,12 +25,16 @@ class LoginViewController: UIViewController {
             return
         }
         
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else {
+                return
+            }
             if let error = error {
-                self.showAlert(title: "Login Failed", message: "Email or password is incorrect. Please try again.")
+                strongSelf.showAlert(title: "Login Failed", message: "Email or password is incorrect. Please try again.")
                 print("Login error: \(error.localizedDescription)")
             } else {
-                self.showAlert(title: "Success", message: "You have logged in successfully!")
+                strongSelf.showAlert(title: "Success", message: "You have logged in successfully!")
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             }
         }
     }

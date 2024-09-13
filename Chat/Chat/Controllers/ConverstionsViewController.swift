@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConverstionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.backgroundColor = .red
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,11 +24,13 @@ class ConverstionsViewController: UIViewController {
     }
     
     private func directToLoginViewController() {
+        if FirebaseAuth.Auth.auth().currentUser == nil{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
                 loginVC.modalPresentationStyle = .fullScreen 
                 present(loginVC, animated: true, completion: nil)
             }
         }
+    }
 
 }
