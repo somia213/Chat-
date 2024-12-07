@@ -18,19 +18,21 @@ class ConverstionsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let isLoggedIn = UserDefaults.standard.bool(forKey:"logged_in")
         
-        if !isLoggedIn{
-            directToLoginViewController()
-        }
+//        if !isLoggedIn{
+//            directToLoginViewController()
+//        }
     }
     
-    private func directToLoginViewController() {
-        if FirebaseAuth.Auth.auth().currentUser == nil{
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
-                loginVC.modalPresentationStyle = .fullScreen 
-                present(loginVC, animated: true, completion: nil)
-            }
-        }
-    }
+    
+    // written in SceneDelegate
+//    private func directToLoginViewController() {
+//        if FirebaseAuth.Auth.auth().currentUser == nil{
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            if let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+//                loginVC.modalPresentationStyle = .fullScreen 
+//                present(loginVC, animated: true, completion: nil)
+//            }
+//        }
+//    }
 
 }

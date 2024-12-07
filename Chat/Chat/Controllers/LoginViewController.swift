@@ -33,8 +33,9 @@ class LoginViewController: UIViewController {
                 strongSelf.showAlert(title: "Login Failed", message: "Email or password is incorrect. Please try again.")
                 print("Login error: \(error.localizedDescription)")
             } else {
-                strongSelf.showAlert(title: "Success", message: "You have logged in successfully!")
-                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                strongSelf.showAlert(title: "Success", message: "You have logged in successfully!") {
+                    strongSelf.navigateToTabBar()
+                }
             }
         }
     }
@@ -47,9 +48,22 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            completion?()
+        }))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func navigateToTabBar() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.rootViewController = tabBarController
+                UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
+            }
+        }
     }
 }
