@@ -1,3 +1,5 @@
+
+
 //
 //  RegisterViewController.swift
 //  Chat
@@ -93,7 +95,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
                 } else {
                     strongSelf.showSignInAlert()
                     strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-                    print("Hiiiiiiiii")
                 }
             }
         }
@@ -101,11 +102,12 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
 
     private func showSignInAlert() {
         let alert = UIAlertController(title: "Success", message: "You are now signed in!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-            self?.navigateToLoginScreen()
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
     }
+
     private func showAlreadySignedUpAlert() {
         let alert = UIAlertController(title: "Already Registered", message: "This email is already registered. Please login.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
@@ -116,10 +118,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
 
     private func navigateToLoginScreen() {
         if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+            self.present(loginVC, animated: true, completion: nil)
             self.modalPresentationStyle = .fullScreen
-            self.dismiss(animated: false) {
-                self.present(loginVC, animated: true, completion: nil)
-            }
         }
     }
 
@@ -204,3 +204,4 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate 
         picker.dismiss(animated: true, completion: nil)
     }
 }
+

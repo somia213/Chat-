@@ -9,30 +9,70 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Converstions View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Profile-->
+        <scene sceneID="n3G-m0-hLB">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ConverstionsViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="eeC-Dj-Cz9" customClass="ProfileViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="npH-P1-XPz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ta6-kn-D0u">
-                                <rect key="frame" x="113" y="322" width="161" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93493264909999996" green="0.57294189929999995" blue="0.065239839260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Cfh-wA-hTB">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="0Rz-Dv-4k0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cfh-wA-hTB" firstAttribute="top" secondItem="0Rz-Dv-4k0" secondAttribute="top" id="1da-W4-aSR"/>
+                            <constraint firstItem="Cfh-wA-hTB" firstAttribute="leading" secondItem="0Rz-Dv-4k0" secondAttribute="leading" id="G2k-TC-QSL"/>
+                            <constraint firstItem="0Rz-Dv-4k0" firstAttribute="trailing" secondItem="Cfh-wA-hTB" secondAttribute="trailing" id="TeD-kY-9eB"/>
+                            <constraint firstItem="0Rz-Dv-4k0" firstAttribute="bottom" secondItem="Cfh-wA-hTB" secondAttribute="bottom" id="h5W-JB-0fz"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="VBC-Zo-AIn"/>
+                    <connections>
+                        <outlet property="tableView" destination="Cfh-wA-hTB" id="nd1-yN-oVG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v33-hZ-cgb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546" y="22"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="rMR-64-sDr">
+            <objects>
+                <viewController id="nAL-uW-p9k" customClass="ConverstionsViewController" customModule="Chat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KmM-wA-tkW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fUm-hk-6DP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Chat" image="rectangle.filled.and.hand.point.up.left" catalog="system" id="yRt-bD-G4h"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQq-Ni-rb9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="46.564885496183201" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="-545" y="-662"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="z3S-94-Y6A">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarController" id="tNw-H5-BGP" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Oe-r1-IfP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="nAL-uW-p9k" kind="relationship" relationship="viewControllers" id="TBB-E5-Ca7"/>
+                        <segue destination="eeC-Dj-Cz9" kind="relationship" relationship="viewControllers" id="vfk-at-ShH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jmf-fs-hXh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1537" y="-296"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="dIy-4b-nhZ">
@@ -141,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqg-p7-5R2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792" y="-35"/>
+            <point key="canvasLocation" x="385" y="-368"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="kod-pk-BfJ">
@@ -289,24 +329,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn7-4t-Xbl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1475.5725190839694" y="-35.211267605633807"/>
+            <point key="canvasLocation" x="1114" y="-358"/>
         </scene>
     </scenes>
     <resources>
         <image name="massanger" width="225" height="225"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="rectangle.filled.and.hand.point.up.left" catalog="system" width="128" height="113"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
